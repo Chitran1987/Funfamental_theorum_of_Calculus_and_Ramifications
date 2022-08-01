@@ -1,0 +1,58 @@
+\chapter{Fundamental Theorum of Calculus}
+\label{chap:2}
+\begin{tcolorbox}
+	The fundamental theorum of calculus states that if $I = \int_{a}^{b}f(x)\,\mathrm{d}x$ and if $g(x)$ is the antiderivative of $f(x)$ such that $f(x) = \mathrm{d}g(x)/\mathrm{d}x$, then $I = \int_{a}^{b}f(x)\,\mathrm{d}x = g(b)-g(a)$.
+\end{tcolorbox}
+
+We use the fundamental theorum of calculus for everyday integration, since using the riemann summation would otherwise be too cumbersome.\\
+
+\begin{tcolorbox}
+	The riemann summation is defined with respect to the area of a curve and is the definition of the integration operation in its most native form. Hence, it is defined as $$I = \int_{a}^{b}f(x)\,\mathrm{d}x = \lim_{\Delta x \to 0} \sum_{n=0}^{\frac{b-a}{\Delta x} - 1}f(a + n\Delta x)\Delta x$$
+\end{tcolorbox}
+The definition of the riemann summation converges to the fundamental theorum of calculus under certain approximations. This shown in proof.\ref{P3}.
+
+\begin{proof}[Proof 3]\label{P3}
+Iff
+	\begin{equation}
+	I = \int_{a}^{b}f(x)\,\mathrm{d}x = \lim_{\Delta x \to 0}\sum_{n=0}^{\frac{b-a}{\Delta x}-1}f(a + n \Delta x)\Delta x \label{eqn: 2.1}
+	\end{equation}
+and iff, $g(x)$ is the antiderivative of $f(x)$, then
+\begin{equation}
+	f(x) = \frac{\mathrm{d}g(x)}{\mathrm{d}x} = \lim_{\Delta x \to 0} \frac{g(x + \Delta x) - g(x)}{\Delta x} \label{eqn: 2.2}
+\end{equation}
+From \eqref{eqn: 2.2} we can write \eqref{eqn: 2.3}
+\begin{equation}
+	\lim_{\Delta x \to 0}f(x)\Delta x = \lim_{\Delta x \to 0} g(x + \Delta x) - g(x) \label{eqn: 2.3}
+\end{equation}
+It follows from \eqref{eqn: 2.3} that...
+\begin{align*}
+	I = \lim_{\Delta x \to 0}\sum_{n=0}^{\frac{b-a}{\Delta x}-1}f(a + n\Delta x) \Delta x &= \lim_{\Delta x \to 0}\sum_{n=0}^{\frac{b-a}{\Delta x}-1}g(a + (n+1)\Delta x) - g(a + n\Delta x)\\
+	&= g(a + \Delta x) - g(a)\\
+	&+ g(a + 2\Delta x) - g(a + \Delta x)\\
+	&+ g(a + 3\Delta x) - g(a + 2\Delta x)\\
+	&+ ....\\
+	&+ ....\\
+	&+ g(b) - g(b - \Delta x)&&
+\end{align*}
+Following the summation sequence shown above, we are left with $g(b) - g(a)$. Hence
+\begin{equation}
+		I = \int_{a}^{b}f(x)\,\mathrm{d}x = \lim_{\Delta x \to 0}\sum_{n=0}^{\frac{b-a}{\Delta x}-1}f(a + n \Delta x)\Delta x = g(b) - g(a)\label{eqn: 2.4}
+\end{equation}
+\end{proof}
+From proof.\ref{P3} it would seem that the riemann summation \textit{unconditionally} converges to the fundamental theorum, but we need to be careful here and look at \eqref{eqn: 2.3}. The very fact of defining a \textit{non-sided/non-biased} limit like $\lim_{\Delta x \to 0} g(x)$ as an abstraction instead of using the more precise \textit{one-sided/biased} $\lim_{\Delta x \to 0^-}g(x)$ or $\lim_{\Delta x \to 0^+}g(x)$ means that we accept the continuity of $g(x)$ at the point $x$. If $\lim_{\Delta x \to 0^-}g(x) \neq \lim_{\Delta x \to 0^+}g(x)$, then we would not be able to define $\lim_{\Delta x \to 0}g(x)$ and hence we would not be able to perform algebric operations like addition or substraction on it as we have done in proof.\ref{P3}.\\
+
+Thus, when we say that $g(x)$ is not continuous at a point $c\,\,: \,\, c\in(a,b)$, then we should revise the convergence of the reimann integral to the fundamental theorum of calculus a bit differently. This can be seen in proof.\ref{P4}
+\begin{proof}[Proof 4] \label{P4}
+	For the integrand $\int_{a}^{b}f(x)\,\mathrm{d}x$ with a discontinuity at $x=c$ such that $c \in (a,b)$:
+	\begin{align*}
+		\int_{a}^{b}f(x)\,\mathrm{d}x &= \lim_{\Delta x \to 0} \sum_{n=0}^{\frac{c^- - a}{\Delta x}-1}f(a + n\Delta x)\Delta x + \lim_{\Delta x \to 0}\sum_{n=0}^{\frac{b-c^+}{\Delta x}-1}f(c^+ + n\Delta x)\Delta x \\
+		&= \lim_{\Delta x \to 0}\sum_{n=0}^{\frac{c^- - a}{\Delta x}-1}g(a + (n+1)\Delta x) - g(a + n \Delta x)\\
+		& + \lim_{\Delta x \to 0}\sum_{n=0}^{\frac{b-c^+}{\Delta x}-1}g(c^+ + (n+1)\Delta x) - g(c^+ + n\Delta x) \\
+		&= \lim_{\Delta x \to 0}[g(c^-) - g(a)] + \lim_{\Delta x \to 0}[g(b) - g(c^+)] \\
+		& = \int_{a}^{c^-}f(x)\,\mathrm{d}x + \int_{c^+}^{b}f(x)\,\mathrm{d}x &&
+	\end{align*}
+	Thus 
+	$$\int_{a}^{b}f(x)\,\mathrm{d}x = \int_{a}^{c^-}f(x)\,\mathrm{d}x + \int_{c^+}^{b}f(x)\,\mathrm{d}x$$
+\end{proof}
+
+Examples of Integrands/Integrand types where the direct conversion of upper and lower bounds of the integrals donot yield results are easy to find and small examples of them will be shown in \autoref{chap:3}
